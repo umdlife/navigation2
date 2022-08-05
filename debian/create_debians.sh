@@ -11,8 +11,8 @@ rosdep update &> /dev/null
 # Package list to create and install debian. 
 # Watch out the order to avoid missing dependencies while creating the debian.
 PACKAGE_LIST_UNDERLAY=(
-            BehaviorTree.CPP \
-            angles/angles
+            BehaviorTree/BehaviorTree.CPP \
+            ros/angles/angles
 )
 
 for PACKAGE in ${PACKAGE_LIST_UNDERLAY[@]}; do
@@ -21,8 +21,8 @@ for PACKAGE in ${PACKAGE_LIST_UNDERLAY[@]}; do
 
     # We have to go to the ROS package parent directory
     cd /opt/underlay_ws/src/$PACKAGE;
-    bloom-generate rosdebian --ros-distro foxy &> /dev/null
-    debian/rules "binary --parallel" &> /dev/null
+    bloom-generate rosdebian --ros-distro humble
+    debian/rules "binary --parallel --with autoreconf "
 
     cd ..
     DEB_FILE=$(find *.deb);
@@ -62,8 +62,8 @@ for PACKAGE in ${PACKAGE_LIST[@]}; do
 
     # We have to go to the ROS package parent directory
     cd $PACKAGE;
-    bloom-generate rosdebian --ros-distro foxy &> /dev/null
-    debian/rules "binary --parallel" &> /dev/null
+    bloom-generate rosdebian --ros-distro humble
+    debian/rules "binary --parallel --with autoreconf "
 
     cd ..
     DEB_FILE=$(find *.deb);

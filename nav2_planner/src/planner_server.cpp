@@ -136,7 +136,7 @@ PlannerServer::on_configure(const rclcpp_lifecycle::State &state)
 
   // Create the action server that we implement with our navigateToPose method
   action_server_ = std::make_unique<ActionServer>(
-      rclcpp_node_,
+      node,
       "compute_path_to_pose",
       std::bind(&PlannerServer::computePlan, this));
 

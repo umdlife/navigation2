@@ -180,7 +180,7 @@ namespace nav2_navfn_planner
     if (!makePlan(start.pose, goal.poses[0].pose, tolerance_, path))
     {
       RCLCPP_WARN(
-          node_->get_logger(), "%s: failed to create plan with "
+          logger_, "%s: failed to create plan with "
                                "tolerance %.2f.",
           name_.c_str(), tolerance_);
     }

@@ -6,7 +6,7 @@
 # docker build -t nav2:latest \
 #   --build-arg UNDERLAY_MIXINS \
 #   --build-arg OVERLAY_MIXINS ./
-ARG FROM_IMAGE=ros:foxy-ros-base
+ARG FROM_IMAGE=ros:humble-ros-base
 
 # multi-stage for caching
 FROM $FROM_IMAGE AS cache
@@ -109,13 +109,11 @@ ENV OVERLAY_WS /opt/overlay_ws
 WORKDIR $OVERLAY_WS/src
 
 COPY debian/create_debians.sh $OVERLAY_WS/src/create_debians.sh
-# COPY umd_mission/docker/debian/50-my-packages.list /etc/ros/rosdep/sources.list.d/50-my-packages.list
-# COPY umd_mission/docker/debian/rosdep.yaml /rosdep.yaml
 
-RUN . /opt/ros/foxy/setup.sh \
+RUN . /opt/ros/humble/setup.sh \
   && . /opt/overlay_ws/install/setup.sh \
   && . /opt/underlay_ws/install/setup.sh \
   && ./create_debians.sh \
   && rm -rf $OVERLAY_WS $UNDERLAY_WS
 
-WORKDIR /opt/ros/foxy
+WORKDIR /opt/ros/humble

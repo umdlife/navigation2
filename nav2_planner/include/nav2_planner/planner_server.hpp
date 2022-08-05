@@ -117,7 +117,6 @@ protected:
 
   // Our action server implements the ComputePath action
   std::unique_ptr<ActionServer> action_server_;
-  nav2_util::CallbackReturn on_shutdown(const rclcpp_lifecycle::State & state) override;
 
   /**
    * @brief Check if an action server is valid / active

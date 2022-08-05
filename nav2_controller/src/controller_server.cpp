@@ -536,7 +536,7 @@ void ControllerServer::publishVelocity(const geometry_msgs::msg::TwistStamped & 
 {
   // Updated(Sergi): We need TwistStamped instead of Twist because Copter HAL uses frames for TF
   if (vel_publisher_->is_activated() && vel_publisher_->get_subscription_count() > 0) {
-    vel_publisher_->publish(std::move(cmd_vel));
+    vel_publisher_->publish(velocity);
   }
 }
 

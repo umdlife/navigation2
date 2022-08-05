@@ -326,8 +326,6 @@ Costmap2DROS::getParameters()
 
   auto node = shared_from_this();
 
-  auto node = shared_from_this();
-
   if (plugin_names_ == default_plugins_) {
     for (size_t i = 0; i < default_plugins_.size(); ++i) {
       nav2_util::declare_parameter_if_not_declared(
