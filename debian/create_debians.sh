@@ -53,7 +53,15 @@ PACKAGE_LIST=(
             navigation2/nav2_amcl \
             navigation2/nav2_planner \
             navigation2/nav2_navfn_planner \
-            navigation2/nav2_controller
+            navigation2/nav2_dwb_controller/nav_2d_msgs \
+            navigation2/nav2_dwb_controller/nav_2d_utils \
+            navigation2/nav2_controller \
+            navigation2/nav2_dwb_controller/dwb_msgs    \
+            navigation2/nav2_dwb_controller/dwb_core    \
+            navigation2/nav2_dwb_controller/dwb_plugins    \
+            navigation2/nav2_dwb_controller/costmap_queue    \
+            navigation2/nav2_dwb_controller/dwb_critics    \
+            navigation2/nav2_dwb_controller/nav2_dwb_controller
 )
 
 for PACKAGE in ${PACKAGE_LIST[@]}; do
