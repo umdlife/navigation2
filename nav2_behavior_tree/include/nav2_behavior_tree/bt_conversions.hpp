@@ -165,6 +165,28 @@ std::vector<Vector4D> convertFromString(StringView key)
 
 }
 
+/**
+ * @brief Parse XML string to custom std::vector of string
+ * by colon-separated-values.
+ * FORMAT: str;str; ...
+ * @param key XML string
+ * @return std::vector<std::string>
+ */
+template <> inline
+std::vector<std::string> convertFromString(StringView key)
+{
+    std::vector<std::string> output_vector;
+    auto parts_vector = BT::splitString(key, ';');
+
+    for (auto& part_vector : parts_vector)
+    {
+      std::string output = convertFromString<std::string>(part_vector);
+      output_vector.push_back(output);
+    }
+    return output_vector; 
+
+}
+
 }  // namespace BT
 
 #endif  // NAV2_BEHAVIOR_TREE__BT_CONVERSIONS_HPP_
