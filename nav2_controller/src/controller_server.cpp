@@ -425,7 +425,8 @@ void ControllerServer::computeControl()
     if (findProgressCheckerId(pc_name, current_progress_checker)) {
       current_progress_checker_ = current_progress_checker;
     } else {
-      throw nav2_core::ControllerException("Failed to find progress checker name: " + pc_name);
+      action_server_->terminate_current();
+      return;
     }
 
     setPlannerPath(action_server_->get_current_goal()->path);
@@ -512,7 +513,7 @@ void ControllerServer::computeAndPublishVelocity()
   }
 
  if (!progress_checkers_[current_progress_checker_]->check(pose)) {
-    throw nav2_core::FailedToMakeProgress("Failed to make progress");
+    throw nav2_core::PlannerException("Failed to make progress");
   }
 
   nav_2d_msgs::msg::Twist2D twist = getThresholdedTwist(odom_sub_->getTwist());
