@@ -70,7 +70,7 @@ ControllerServer::ControllerServer(const rclcpp::NodeOptions & options)
 
 ControllerServer::~ControllerServer()
 {
-  progress_checkers_.reset();
+  progress_checkers_.clear();
   goal_checkers_.clear();
   controllers_.clear();
   costmap_thread_.reset();
@@ -83,7 +83,7 @@ ControllerServer::on_configure(const rclcpp_lifecycle::State & state)
   RCLCPP_INFO(get_logger(), "Configuring controller interface");
   RCLCPP_INFO(get_logger(), "getting progress checker plugins..");
 try {
-  get_parameter("progress_checker_plugins", progress_checker_id_);
+  get_parameter("progress_checker_plugins", progress_checker_ids_);
   nav2_util::declare_parameter_if_not_declared(
       node, "progress_checker_plugin", rclcpp::PARAMETER_STRING);
     std::string progress_checker_plugin;
