@@ -82,8 +82,8 @@ ControllerServer::on_configure(const rclcpp_lifecycle::State & state)
   auto node = shared_from_this();
   RCLCPP_INFO(get_logger(), "Configuring controller interface");
   RCLCPP_INFO(get_logger(), "getting progress checker plugins..");
-try {
   get_parameter("progress_checker_plugins", progress_checker_ids_);
+try {
   nav2_util::declare_parameter_if_not_declared(
       node, "progress_checker_plugin", rclcpp::PARAMETER_STRING);
     std::string progress_checker_plugin;
@@ -125,6 +125,7 @@ try {
 
   controller_types_.resize(controller_ids_.size());
   goal_checker_types_.resize(goal_checker_ids_.size());
+  progress_checker_types_.resize(progress_checker_ids_.size());
 
   get_parameter("controller_frequency", controller_frequency_);
   get_parameter("min_x_velocity_threshold", min_x_velocity_threshold_);
