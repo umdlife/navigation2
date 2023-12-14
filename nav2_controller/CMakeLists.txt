@@ -77,7 +77,7 @@ ament_target_dependencies(${executable_name}
 
 target_link_libraries(${executable_name} ${library_name})
 
-rclcpp_components_register_nodes(${library_name} "nav2_controller::ControllerServer")
+# rclcpp_components_register_nodes(${library_name} "nav2_controller::ControllerServer")
 
 install(TARGETS simple_progress_checker simple_goal_checker stopped_goal_checker ${library_name}
   ARCHIVE DESTINATION lib
