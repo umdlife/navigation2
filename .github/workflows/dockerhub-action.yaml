@@ -20,7 +20,7 @@ jobs:
       TAG: v1.1.0
     steps:
       - name: Check Out Current Repo 
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
         with:
           submodules: recursive
 
